@@ -1,11 +1,11 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+
+import Navigation from "./compnents/Navigation"
 
 function App() {
   return (
-    <div className="App">
-      Astrillow
-    </div>
+    <Navigation />
   );
 }
 
