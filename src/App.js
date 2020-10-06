@@ -1,11 +1,18 @@
 import React from "react";
-import "./App.css";
-
-import Navigation from "./compnents/Navigation"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./Home"
 
 function App() {
   return (
-    <Navigation />
+    <Router>
+      <Switch>
+        <Route path="/search">search</Route>
+        <Route path="/saved">saved</Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
