@@ -1,18 +1,17 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./Home"
+import { Route } from "react-router-dom";
+import Home from "./Home";
+import Menu from "./compnents/Menu";
+import Saved from "./Saved";
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/search">search</Route>
-        <Route path="/saved">saved</Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </Router>
+    <div>
+      <Menu />
+      <Route exact path="/" component={Home} />
+      <Route path="/saved" component={Saved} />
+      <Route path="/search" />
+    </div>
   );
 }
 

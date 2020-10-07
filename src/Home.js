@@ -1,6 +1,6 @@
 import React from "react";
-import { Menu } from "./compnents";
 import image from "./images/133303main_image_feature_406_ys_full.jpg";
+import "./Home.css";
 
 export default function Home() {
   return (
@@ -10,8 +10,6 @@ export default function Home() {
         backgroundImage: `url(${image})`,
         backgroundSize: "cover",
       }}
-    >
-      <Menu />
-    </div>
+    ></div>
   );
 }
