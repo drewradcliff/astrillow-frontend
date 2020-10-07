@@ -1,9 +1,9 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import Home from "./Home";
-import Menu from "./compnents/Menu";
+import Menu from "./components/Menu";
 import Saved from "./Saved";
-import Search from "./compnents/Search";
+import Search from "./components/Search";
 
 function App() {
   return (
