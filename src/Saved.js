@@ -1,6 +1,6 @@
 import React from "react";
 import image from "./images/133303main_image_feature_406_ys_full.jpg";
-import SavedAsteroidCard from "./compnents/SavedAsteroidCard";
+import SavedAsteroidCard from "./components/SavedAsteroidCard";
 import "./Home.css";
 
 export default function Home() {
