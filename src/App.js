@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import Home from "./Home";
 import Menu from "./components/Menu";
 import Saved from "./Saved";
@@ -31,7 +31,7 @@ function App() {
     <div>
       <Menu />
       <Route exact path="/">
-        {loggedIn ? <Home /> : <Login handleLogin={handleLogin} />}
+        {loggedIn ? <Home /> : <Redirect to="/login" />}
       </Route>
       <Route path="/saved">
         <Saved />
