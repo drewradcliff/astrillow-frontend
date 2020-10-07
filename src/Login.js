@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-export default function Login() {
+export default function Login(props) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [loggedIn, setLoggedIn] = useState(
-		localStorage.getItem("token") ? true : false
-	);
 
 	function handleChange(e) {
 		if (e.target.name === "username") {
@@ -29,25 +26,8 @@ export default function Login() {
 	//   }
 	// });
 
-	function handleLogin(e, data) {
-		console.log(data);
-		e.preventDefault();
-		fetch("http://localhost:8000/auth/login/", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(data),
-		})
-			.then((res) => res.json())
-			.then((json) => {
-				localStorage.setItem("token", json.token);
-				setLoggedIn(true);
-			});
-	}
-
 	return (
-		<form onSubmit={(e) => handleLogin(e, { username, password })}>
+		<form onSubmit={(e) => props.handleLogin(e, { username, password })}>
 			<h4>Log In</h4>
 			<label htmlFor="username">Username</label>
 			<input
