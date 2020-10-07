@@ -12,6 +12,9 @@ export default function Menu() {
           <Nav.Link href="/search">Search</Nav.Link>
           <Nav.Link href="/saved">Saved</Nav.Link>
         </Nav>
+        <Nav>
+          <Nav.Link className="justify-content-end" href="">Login</Nav.Link>
+        </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
