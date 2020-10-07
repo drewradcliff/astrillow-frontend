@@ -8,7 +8,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 
 function App() {
-  const [setUser] = useState(null);
+  const [user, setUser] = useState(null);
   const [loggedIn] = useState(localStorage.getItem("token") ? true : false);
   function handleLogin(e, data) {
     console.log(data);
