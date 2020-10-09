@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
-import { SpaceMap, SearchFilter } from "./components";
+import React from "react";
+import { SpaceMap, SearchFilter, ListAsteroid } from "./components";
 
 import "./Search.css";
 
 export default function Search() {
+
+  // Dummy data
   const asteroidList = [
     {
       name: "asteroid1",
@@ -28,7 +30,9 @@ export default function Search() {
     <div className="search">
       <div className="left-components">
         <SearchFilter />
-        <div>Asteroid Search Component</div>
+        <ListAsteroid />
+        <ListAsteroid />
+        <ListAsteroid />
       </div>
       <div className="spacekit">
         <SpaceMap asteroidList={asteroidList} />

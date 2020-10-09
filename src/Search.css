@@ -3,12 +3,11 @@
 }
 
 .left-components {
-  width: 40%;
   float: left;
 }
 
 .spacekit {
-  width: 60%;
   height: 100%;
+  width: calc(100% - 840px);
   float: right;
 }

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup"
 import ToggleButton from "react-bootstrap/ToggleButton"
 
 export default function SearchFilter() {
-  const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState("1");
 
   const radios = [

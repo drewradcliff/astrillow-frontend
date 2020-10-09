@@ -28,12 +28,12 @@ export default function SpaceMap(props) {
     viz.createObject("neptune", window.Spacekit.SpaceObjectPresets.NEPTUNE);
 
     props.asteroidList.forEach((asteroid) => {
-      const obj = viz.createObject(asteroid.name, {
+      viz.createObject(asteroid.name, {
         labelText: "asteroid",
         ephem: new window.Spacekit.Ephem(asteroid.parameters, "deg"),
       });
     });
-  }, []);
+  }, [props.asteroidList]);
 
   return (
     <div style={{ height: "100%", width: "100%" }} id="main-container"></div>
