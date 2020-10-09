@@ -1,0 +1,28 @@
+.asteroid-page {
+  margin-left: 25%;
+  margin-top: 3%;
+}
+
+.container {
+  display: flex;
+  align-items: stretch;
+}
+
+.container > div {
+  margin-left: 50px;
+  margin-left: 50px;
+  text-align: center;
+}
+
+#price {
+  font-size: large;
+  font-weight: bold;
+}
+
+.body {
+  padding: 2%;
+}
+
+.text {
+  padding: 2%;
+}
