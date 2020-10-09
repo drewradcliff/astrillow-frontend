@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SpaceMap } from "./components";
+import { SpaceMap, SearchFilter } from "./components";
 
 import "./Search.css";
 
@@ -22,7 +22,7 @@ export default function Search() {
   return (
     <div className="search">
       <div className="left-components">
-        <div>Filter Component</div>
+        <SearchFilter />
         <div>Asteroid Search Component</div>
       </div>
       {/* <div style={{ minHeight: "500px" }} id="main-container"></div> */}
