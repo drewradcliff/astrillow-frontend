@@ -27,11 +27,13 @@ export default function SpaceMap(props) {
     viz.createObject("uranus", window.Spacekit.SpaceObjectPresets.URANUS);
     viz.createObject("neptune", window.Spacekit.SpaceObjectPresets.NEPTUNE);
 
-    const asteroid = viz.createObject(props.asteroidName, {
-      labelText: 'asteroid',
-      ephem: new window.Spacekit.Ephem(props.asteroidParameters, 'deg'),
+    props.asteroidList.forEach((asteroid) => {
+      const obj = viz.createObject(asteroid.name, {
+        labelText: "asteroid",
+        ephem: new window.Spacekit.Ephem(asteroid.parameters, "deg"),
+      });
     });
-  }, [])
+  }, []);
 
   return (
     <div style={{ height: "100%", width: "100%" }} id="main-container"></div>
