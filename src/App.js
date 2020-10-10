@@ -54,7 +54,7 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <Menu loggedIn={loggedIn} handleLogout={handleLogout} />
       <Route exact path="/">
         {loggedIn ? <Home /> : <Redirect to="/login" />}
@@ -71,7 +71,7 @@ function App() {
       <Route path="/login">
         <Login handleLogin={handleLogin} />
       </Route>
-    </div>
+    </>
   );
 }
 
