@@ -1,0 +1,13 @@
+.search {
+  height: 100vh;
+}
+
+.left-components {
+  float: left;
+}
+
+.spacekit {
+  height: 100%;
+  width: calc(100% - 840px);
+  float: right;
+}

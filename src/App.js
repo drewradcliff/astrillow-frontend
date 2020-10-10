@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Redirect, Route } from "react-router-dom";
 import Home from "./Home";
-import Menu from "./components/Menu";
+import { Menu } from "./components";
 import Saved from "./Saved";
 import Search from "./Search";
 import Signup from "./Signup";
