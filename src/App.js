@@ -6,6 +6,7 @@ import Saved from "./Saved";
 import Search from "./Search";
 import Signup from "./Signup";
 import Login from "./Login";
+import FourOhFour from "./components/404";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -30,7 +31,7 @@ function App() {
   }
 
   function handleSignup(e, data) {
-    console.log(data)
+    console.log(data);
     e.preventDefault();
     fetch("http://localhost:8000/testusers/", {
       method: "POST",
@@ -41,7 +42,7 @@ function App() {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json)
+        console.log(json);
         localStorage.setItem("token", json.token);
         setLoggedIn(true);
         setUser(json.user);
@@ -70,6 +71,9 @@ function App() {
       </Route>
       <Route path="/login">
         <Login handleLogin={handleLogin} />
+      </Route>
+      <Route path="*">
+        <FourOhFour />
       </Route>
     </>
   );
