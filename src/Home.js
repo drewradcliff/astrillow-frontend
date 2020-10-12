@@ -1,21 +1,19 @@
 import React from "react";
-import image from "./images/133303main_image_feature_406_ys_full.jpg";
-import AsteroidPage from "./components/AsteroidPage";
+import Button from "react-bootstrap/Button";
+
+import "./Home.css";
 
 export default function Home() {
   return (
-    <div
-      className="sliding-background"
-      style={{
-        height: "100vh",
-        backgroundImage: `url(${image})`,
-        backgroundSize: "cover",
-      }}
-    >
-      <div>
-        <div className="cards">
-          <AsteroidPage />
-        </div>
+    <div className="hero-image">
+      <div className="hero-text">
+        <h1>Go Far</h1>
+        <p>
+          You're path to untold riches.
+        </p>
+        <p>
+          <Button variant="light">Explore Asteroids</Button>
+        </p>
       </div>
     </div>
   );
