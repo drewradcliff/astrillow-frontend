@@ -2,7 +2,13 @@ import React, { useEffect } from "react";
 
 export default function SpaceMap(props) {
   useEffect(() => {
-    //
+    const div = document.getElementById("main-container");
+    if (div.firstChild) {
+      while (div.firstChild) {
+        div.removeChild(div.firstChild);
+      }
+    }
+
     // Update the document title using the browser API
     const viz = new window.Spacekit.Simulation(
       document.getElementById("main-container"),
