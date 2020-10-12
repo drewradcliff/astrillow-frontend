@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { SpaceMap, SearchFilter, ListAsteroid } from "./components";
 
 import "./Search.css";
 
 export default function Search() {
+  const [asteroidList, setAsteroidList] = useState([]);
 
   // Dummy data
-  const asteroidList = [
+  const dummyData = [
     {
       name: "asteroid1",
       parameters: {
@@ -29,13 +30,13 @@ export default function Search() {
   return (
     <div className="search">
       <div className="left-components">
-        <SearchFilter />
-        <ListAsteroid />
-        <ListAsteroid />
-        <ListAsteroid />
+        <SearchFilter setAsteroidList={setAsteroidList} />
+        {asteroidList.map((post) => (
+          <ListAsteroid />
+        ))}
       </div>
       <div className="spacekit">
-        <SpaceMap asteroidList={asteroidList} />
+        <SpaceMap asteroidList={dummyData} />
       </div>
     </div>
   );
