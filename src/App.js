@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import { Menu } from "./components";
 import Saved from "./Saved";
@@ -57,24 +57,26 @@ function App() {
   return (
     <>
       <Menu loggedIn={loggedIn} handleLogout={handleLogout} />
-      <Route exact path="/">
-        {loggedIn ? <Home /> : <Redirect to="/login" />}
-      </Route>
-      <Route path="/saved">
-        <Saved />
-      </Route>
-      <Route path="/search">
-        <Search />
-      </Route>
-      <Route path="/signup">
-        <Signup handleSignup={handleSignup} />
-      </Route>
-      <Route path="/login">
-        <Login handleLogin={handleLogin} />
-      </Route>
-      <Route path="*">
-        <FourOhFour />
-      </Route>
+      <Switch>
+        <Route exact path="/">
+          {loggedIn ? <Home /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/saved">
+          <Saved />
+        </Route>
+        <Route path="/search">
+          <Search />
+        </Route>
+        <Route path="/signup">
+          <Signup handleSignup={handleSignup} />
+        </Route>
+        <Route path="/login">
+          <Login handleLogin={handleLogin} />
+        </Route>
+        <Route path="*">
+          <FourOhFour />
+        </Route>
+      </Switch>
     </>
   );
 }
