@@ -13,7 +13,7 @@ export default function Login(props) {
   }
 
   return (
-    <>
+    <div style={{ paddingTop: "56px" }}>
       <form onSubmit={(e) => props.handleLogin(e, { username, password })}>
         <h4>Log In</h4>
         <label htmlFor="username">Username</label>
@@ -33,6 +33,6 @@ export default function Login(props) {
         <input type="submit" />
       </form>
       <a href="/signup">Signup</a>
-    </>
+    </div>
   );
 }

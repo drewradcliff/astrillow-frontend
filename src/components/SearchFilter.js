@@ -1,35 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 
 export default function SearchFilter(props) {
-  const [radioValue, setRadioValue] = useState("1");
+  const [radioValue, setRadioValue] = useState("value");
   const [searchValue, setSearchValue] = useState("");
   const [submittedValue, setSubmitValue] = useState(false);
 
   const radios = [
-    { name: "Value", value: "1" },
-    { name: "Distance", value: "2" },
-    { name: "Profit", value: "3" },
+    { name: "Value", value: "value" },
+    { name: "Accessable", value: "accessibility" },
+    { name: "Smallest", value: "smallest" },
   ];
 
-  const handleChange = (event) => {
-    // const formData = { ...searchValue };
-    // formData[event.target.name] = event.target.value;
+  useEffect(() => {
+    fetch(`https://www.asterank.com/api/rankings?sort_by=${radioValue}&limit=20`)
+      .then((res) => res.json())
+      .then((data) => props.setAsteroidList(data));
+  }, [radioValue])
 
+  const handleChange = (event) => {
     setSearchValue(event.target.value);
   };
 
   const handleSubmit = (event, data) => {
     event.preventDefault();
-    // const formData = { ...searchValue };
-
     fetch(`https://www.asterank.com/api/autocomplete?query=${searchValue}`)
       .then((res) => res.json())
-      .then((data) => props.setAsteroidList(data), console.log(data));
+      .then((data) => props.setAsteroidList(data));
     setSubmitValue(true);
     setSearchValue(event.target.value);
-    console.log(searchValue, submittedValue);
   };
 
   return (
