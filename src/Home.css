@@ -1,7 +1,7 @@
 .hero-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("./images/133303main_image_feature_406_ys_full.jpg");
-  height: calc(100vh - 56px);
+  height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

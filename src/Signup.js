@@ -16,30 +16,36 @@ export default function Signup({ handleSignup }) {
   }
 
   return (
-    <form onSubmit={(e) => handleSignup(e, { username, password, display_name: displayName })}>
-      <h4>Signup</h4>
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        name="username"
-        value={username}
-        onChange={handleChange}
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        value={password}
-        onChange={handleChange}
-      />
-      <label htmlFor="displayName">Display Name</label>
-      <input
-        type="text"
-        name="display_name"
-        value={displayName}
-        onChange={handleChange}
-      />
-      <input type="submit" />
-    </form>
+    <div style={{ paddingTop: "56px" }}>
+      <form
+        onSubmit={(e) =>
+          handleSignup(e, { username, password, display_name: displayName })
+        }
+      >
+        <h4>Signup</h4>
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          value={username}
+          onChange={handleChange}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+        />
+        <label htmlFor="displayName">Display Name</label>
+        <input
+          type="text"
+          name="display_name"
+          value={displayName}
+          onChange={handleChange}
+        />
+        <input type="submit" />
+      </form>
+    </div>
   );
 }

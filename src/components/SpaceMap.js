@@ -17,8 +17,7 @@ export default function SpaceMap(props) {
       }
     );
 
-    // Create a background using Yale Bright Star Catalog data.
-    viz.createStars();
+    // viz.createStars();
 
     // Create our first object - the sun - using a preset space object.
     viz.createObject("sun", window.Spacekit.SpaceObjectPresets.SUN);
@@ -34,9 +33,20 @@ export default function SpaceMap(props) {
     viz.createObject("neptune", window.Spacekit.SpaceObjectPresets.NEPTUNE);
 
     props.asteroidList.forEach((asteroid) => {
-      viz.createObject(asteroid.name, {
-        labelText: "asteroid",
-        ephem: new window.Spacekit.Ephem(asteroid.parameters, "deg"),
+      viz.createObject(asteroid.full_name, {
+        // labelText: asteroid.full_name,
+        ephem: new window.Spacekit.Ephem(
+          {
+            a: asteroid.a,
+            e: asteroid.e,
+            i: asteroid.i,
+            om: asteroid.om,
+            w: asteroid.w,
+            ma: asteroid.ma,
+            epoch: asteroid.epoch,
+          },
+          "deg"
+        ),
       });
     });
   }, [props.asteroidList]);
