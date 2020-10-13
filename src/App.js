@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import { Menu } from "./components";
 import Saved from "./Saved";
@@ -7,9 +7,12 @@ import Search from "./Search";
 import Signup from "./Signup";
 import Login from "./Login";
 import FourOhFour from "./components/404";
+import AsteroidPage from "./components/AsteroidPage";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [asteroidDetail, setAsteroidDetail] = useState([]);
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem("token") ? true : false
   );
@@ -57,26 +60,31 @@ function App() {
   return (
     <>
       <Menu loggedIn={loggedIn} handleLogout={handleLogout} />
-      <Switch>
-        <Route exact path="/">
-          {loggedIn ? <Home /> : <Redirect to="/login" />}
-        </Route>
-        <Route path="/saved">
-          <Saved />
-        </Route>
-        <Route path="/search">
-          <Search />
-        </Route>
-        <Route path="/signup">
-          <Signup handleSignup={handleSignup} />
-        </Route>
-        <Route path="/login">
-          <Login handleLogin={handleLogin} />
-        </Route>
-        <Route path="*">
-          <FourOhFour />
-        </Route>
-      </Switch>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {loggedIn ? <Home /> : <Redirect to="/login" />}
+          </Route>
+          <Route path="/saved">
+            <Saved />
+          </Route>
+          <Route path="/search">
+            <Search setAsteroidDetail={setAsteroidDetail} />
+          </Route>
+          <Route path="/signup">
+            <Signup handleSignup={handleSignup} />
+          </Route>
+          <Route path="/login">
+            <Login handleLogin={handleLogin} />
+          </Route>
+          <Route path="/asteroid-detail">
+            <AsteroidPage asteroidDetail={asteroidDetail} />
+          </Route>
+          <Route path="*">
+            <FourOhFour />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </>
   );
 }

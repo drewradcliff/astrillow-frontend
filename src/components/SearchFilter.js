@@ -5,7 +5,6 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 export default function SearchFilter(props) {
   const [radioValue, setRadioValue] = useState("1");
   const [searchValue, setSearchValue] = useState("");
-  const [submittedValue, setSubmitValue] = useState(false);
 
   const radios = [
     { name: "Value", value: "1" },
@@ -14,22 +13,17 @@ export default function SearchFilter(props) {
   ];
 
   const handleChange = (event) => {
-    // const formData = { ...searchValue };
-    // formData[event.target.name] = event.target.value;
-
     setSearchValue(event.target.value);
   };
 
   const handleSubmit = (event, data) => {
     event.preventDefault();
-    // const formData = { ...searchValue };
 
     fetch(`https://www.asterank.com/api/autocomplete?query=${searchValue}`)
       .then((res) => res.json())
       .then((data) => props.setAsteroidList(data), console.log(data));
-    setSubmitValue(true);
+    // props.setSubmitValue(true);
     setSearchValue(event.target.value);
-    console.log(searchValue, submittedValue);
   };
 
   return (

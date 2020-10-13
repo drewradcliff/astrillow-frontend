@@ -11,3 +11,9 @@
   width: calc(100% - 840px);
   float: right;
 }
+
+.not-active {
+  cursor: default;
+  text-decoration: none;
+  color: black;
+}
