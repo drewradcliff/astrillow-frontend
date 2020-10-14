@@ -1,14 +1,13 @@
 import React, { useState } from "react";
+import { Menu, FourOhFour, AsteroidPage } from "./components";
 import { Route, Switch } from "react-router";
 import Home from "./Home";
-import { Menu } from "./components";
 import Saved from "./Saved";
 import Search from "./Search";
 import Signup from "./Signup";
 import Login from "./Login";
-import FourOhFour from "./components/404";
-import AsteroidPage from "./components/AsteroidPage";
 import { useHistory } from "react-router-dom";
+
 
 function App(props) {
   const history = useHistory();
@@ -45,6 +44,7 @@ function App(props) {
         }
         console.log(json);
         localStorage.setItem("token", json.token);
+        localStorage.setItem("user_id", json.user.id)
         setLoggedIn(true);
         setStatus("logged in");
       })
@@ -54,9 +54,8 @@ function App(props) {
   }
 
   function handleSignup(e, data) {
-    console.log(data);
     e.preventDefault();
-    fetch("http://localhost:8000/testusers/", {
+    fetch("http://localhost:8000/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,8 +64,8 @@ function App(props) {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         localStorage.setItem("token", json.token);
+        localStorage.setItem("user_id", json.user.id)
         setLoggedIn(true);
         setUser(json.user);
       });

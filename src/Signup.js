@@ -18,9 +18,12 @@ export default function Signup({ handleSignup }) {
   return (
     <div style={{ paddingTop: "56px" }}>
       <form
-        onSubmit={(e) =>
-          handleSignup(e, { username, password, display_name: displayName })
-        }
+        onSubmit={(e) => {
+          handleSignup(e, { username, password, display_name: displayName });
+          setDisplayName("");
+          setUsername("");
+          setPassword("");
+        }}
       >
         <h4>Signup</h4>
         <label htmlFor="username">Username</label>
