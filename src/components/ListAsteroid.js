@@ -1,5 +1,4 @@
 import React from "react";
-import AsteroidPage from "../components/AsteroidPage";
 import { Link } from "react-router-dom";
 
 import image from "../images/Asteroid.jpg";
@@ -7,7 +6,6 @@ import image from "../images/Asteroid.jpg";
 export default function ListAsteroid(props) {
   const handleOnClick = (e) => {
     props.setAsteroidDetail(props.post);
-    // window.location = "/asteroid-detail";
   };
 
   return (

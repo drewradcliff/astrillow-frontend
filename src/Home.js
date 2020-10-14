@@ -8,9 +8,7 @@ export default function Home() {
     <div className="hero-image">
       <div className="hero-text">
         <h1>Go Far</h1>
-        <p>
-          You're path to untold riches.
-        </p>
+        <p>You're path to untold riches.</p>
         <p>
           <Button variant="light">Explore Asteroids</Button>
         </p>
