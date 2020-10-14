@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu, FourOhFour, AsteroidPage } from "./components";
 import { Route, Switch } from "react-router";
 import Home from "./Home";
@@ -9,16 +9,16 @@ import Login from "./Login";
 import { useHistory } from "react-router-dom";
 
 
-function App(props) {
+function App() {
   const history = useHistory();
   const [user, setUser] = useState(null);
-  React.useEffect(() => {
+  useEffect(() => {
     const data = localStorage.getItem("user");
     if (data) {
       setUser(JSON.parse(data));
     }
   }, []);
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   });
 
@@ -44,7 +44,7 @@ function App(props) {
         }
         console.log(json);
         localStorage.setItem("token", json.token);
-        localStorage.setItem("user_id", json.user.id)
+        // localStorage.setItem("user_id", json.user.id)
         setLoggedIn(true);
         setStatus("logged in");
       })
@@ -65,7 +65,6 @@ function App(props) {
       .then((res) => res.json())
       .then((json) => {
         localStorage.setItem("token", json.token);
-        localStorage.setItem("user_id", json.user.id)
         setLoggedIn(true);
         setUser(json.user);
       });

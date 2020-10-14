@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Heart, HeartFill } from "react-bootstrap-icons";
 import image from "../images/Asteroid.jpg";
 
@@ -9,7 +9,7 @@ export default function ListAsteroid(props) {
   let history = useHistory();
 
   const [isSaved, setIsSaved] = useState(false);
-  const handleSave = (e, data) => {
+  const handleSave = (e) => {
     const date = new Date();
     fetch("http://localhost:8000/api/savedasteroid/", {
       method: "POST",
@@ -19,15 +19,15 @@ export default function ListAsteroid(props) {
       },
       body: JSON.stringify({
         name: props.asteroid.full_name,
-        saved_by: localStorage.getItem("user_id"),
+        saved_by: JSON.parse(localStorage.getItem("user")).id,
         date_saved: date.toISOString(),
       }),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.id) setIsSaved(true)
+        if (data.id) setIsSaved(true);
       })
-      .catch((error) => console.error(error))
+      .catch((error) => console.error(error));
 
     if (!e) var e = window.event;
     e.cancelBubble = true;
@@ -62,10 +62,6 @@ export default function ListAsteroid(props) {
                   <Heart fill="red" />
                 </h4>
               )}
-
-              {/* <h4 className="save-button" onClick={(e) => handleSave(e)}>
-                {isSaved ? <HeartFill fill="red" /> : <Heart fill="red" />}
-              </h4> */}
             </div>
             <p className="card-text">
               This is a wider card with supporting text below as a natural
