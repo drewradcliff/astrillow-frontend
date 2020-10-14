@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Menu, FourOhFour, AsteroidPage } from "./components";
-import { Route, Switch } from "react-router";
+import { Route, Switch, Redirect } from "react-router";
 import Home from "./Home";
 import Saved from "./Saved";
 import Search from "./Search";
 import Signup from "./Signup";
 import Login from "./Login";
 import { useHistory } from "react-router-dom";
-
 
 function App() {
   const history = useHistory();
@@ -42,9 +41,7 @@ function App() {
           console.log("HIT");
           handleSuccessfulAuth(json.user);
         }
-        console.log(json);
         localStorage.setItem("token", json.token);
-        // localStorage.setItem("user_id", json.user.id)
         setLoggedIn(true);
         setStatus("logged in");
       })
@@ -93,9 +90,12 @@ function App() {
           path="/"
           render={(props) => <Home {...props} status={status} user={user} />}
         ></Route>
-        <Route path="/saved">
-          <Saved />
-        </Route>
+        <Route
+          path="/saved"
+          render={(props) => (
+            <Saved {...props} setAsteroidDetail={setAsteroidDetail} />
+          )}
+        ></Route>
         <Route
           path="/search"
           render={(props) => (

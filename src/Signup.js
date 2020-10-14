@@ -28,7 +28,7 @@ export default function Signup({ handleSignup }) {
         <h4>Signup</h4>
         <label htmlFor="username">Username</label>
         <input
-          type="text"
+        type="email"
           name="username"
           value={username}
           onChange={handleChange}

@@ -1,22 +1,28 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
+import { useHistory } from "react-router-dom";
+import image from "../images/Asteroid.jpg";
 
-const SavedAAsteroid = (props) => {
+const SavedAsteroidCard = (props) => {
+  let history = useHistory();
+
+  const handleOnClick = () => {
+    props.setAsteroidDetail(props.asteroid);
+    history.push("/asteroid-detail");
+  };
+
   return (
-    <Card style={{ width: "16rem" }}>
-      <Card.Header>Asteroid Header</Card.Header>
-      <Card.Body>
-        <Card.Title>Asteroid Title</Card.Title>
-        <Card.Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-          ipsum dolor sit amet consectetur adipiscing elit ut aliquam. Massa
-          sapien faucibus et molestie ac feugiat sed lectus vestibulum. Habitant
-          morbi tristique senectus et netus.
-        </Card.Text>
-      </Card.Body>
-    </Card>
+    <div onClick={handleOnClick}>
+      <Card style={{ width: "16rem" }}>
+        <Card.Header>{props.asteroid.name}</Card.Header>
+        <Card.Body>
+          <Card.Title></Card.Title>
+          <Card.Img src={image}></Card.Img>
+          <Card.Text>Date saved: {Date(props.asteroid.date_saved)}</Card.Text>
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
 
-export default SavedAAsteroid;
+export default SavedAsteroidCard;
