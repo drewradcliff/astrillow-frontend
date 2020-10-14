@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { Menu, FourOhFour, AsteroidPage } from "./components";
 import Home from "./Home";
-import { Menu } from "./components";
 import Saved from "./Saved";
 import Search from "./Search";
 import Signup from "./Signup";
 import Login from "./Login";
-import FourOhFour from "./components/404";
-import AsteroidPage from "./components/AsteroidPage";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -28,13 +25,13 @@ function App() {
       .then((res) => res.json())
       .then((json) => {
         localStorage.setItem("token", json.token);
+        localStorage.setItem("user_id", json.user.id)
         setLoggedIn(true);
         setUser(json.user);
       });
   }
 
   function handleSignup(e, data) {
-    console.log(data);
     e.preventDefault();
     fetch("http://localhost:8000/testusers/", {
       method: "POST",
@@ -45,8 +42,8 @@ function App() {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         localStorage.setItem("token", json.token);
+        localStorage.setItem("user_id", json.user.id)
         setLoggedIn(true);
         setUser(json.user);
       });
@@ -54,6 +51,7 @@ function App() {
 
   function handleLogout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
     setLoggedIn(false);
   }
 

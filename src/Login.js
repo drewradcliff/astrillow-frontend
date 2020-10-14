@@ -14,7 +14,13 @@ export default function Login(props) {
 
   return (
     <div style={{ paddingTop: "56px" }}>
-      <form onSubmit={(e) => props.handleLogin(e, { username, password })}>
+      <form
+        onSubmit={(e) => {
+          props.handleLogin(e, { username, password });
+          setUsername("");
+          setPassword("");
+        }}
+      >
         <h4>Log In</h4>
         <label htmlFor="username">Username</label>
         <input

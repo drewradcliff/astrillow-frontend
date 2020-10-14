@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Card from "react-bootstrap/Card";
 import image from "../images/Asteroid.jpg";
 import "../components/AsteroidPage.css";
@@ -12,9 +12,6 @@ const AsteroidPage = (props) => {
           <Card.Title style={{ flexGrow: 1 }}>
             {props.asteroidDetail.full_name}
           </Card.Title>
-          {/* <div id="price" style={{ flexGrow: 1 }}>
-            $100 Billion
-          </div> */}
           <div id="icon" style={{ flexGrow: 8 }}>
             <svg
               width="2em"

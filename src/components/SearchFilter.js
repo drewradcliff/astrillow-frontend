@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 
-export default function SearchFilter(props) {
+export default function SearchFilter({ setAsteroidList }) {
   const [radioValue, setRadioValue] = useState("value");
   const [searchValue, setSearchValue] = useState("");
 
@@ -17,8 +17,8 @@ export default function SearchFilter(props) {
       `https://www.asterank.com/api/rankings?sort_by=${radioValue}&limit=20`
     )
       .then((res) => res.json())
-      .then((data) => props.setAsteroidList(data));
-  }, [radioValue]);
+      .then((data) => setAsteroidList(data));
+  }, [setAsteroidList, radioValue]);
 
   const handleChange = (event) => {
     setSearchValue(event.target.value);
@@ -28,8 +28,7 @@ export default function SearchFilter(props) {
     event.preventDefault();
     fetch(`https://www.asterank.com/api/autocomplete?query=${searchValue}`)
       .then((res) => res.json())
-      .then((data) => props.setAsteroidList(data));
-    // setSubmitValue(true);
+      .then((data) => setAsteroidList(data));
     setSearchValue(event.target.value);
   };
 
