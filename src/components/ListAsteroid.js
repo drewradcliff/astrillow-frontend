@@ -15,19 +15,19 @@ export default function ListAsteroid(props) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // TODO: Fix authorization
-        // Austhorization: `JWT ${localStorage.getItem("token")}`,
+        Authorization: `JWT ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
         name: props.asteroid.full_name,
         saved_by: localStorage.getItem("user_id"),
-        favorite: true,
         date_saved: date.toISOString(),
-        note: "test",
       }),
     })
       .then((res) => res.json())
-      .then((data) => setIsSaved(true));
+      .then((data) => {
+        if (data.id) setIsSaved(true)
+      })
+      .catch((error) => console.error(error))
 
     if (!e) var e = window.event;
     e.cancelBubble = true;

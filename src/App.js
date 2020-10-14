@@ -33,7 +33,7 @@ function App() {
 
   function handleSignup(e, data) {
     e.preventDefault();
-    fetch("http://localhost:8000/testusers/", {
+    fetch("http://localhost:8000/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
