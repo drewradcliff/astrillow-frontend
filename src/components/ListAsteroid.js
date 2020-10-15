@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Heart, HeartFill } from "react-bootstrap-icons";
-import image from "../images/Asteroid.jpg";
+import image from "../images/asteroid-vesta.png";
 
 import "./ListAsteroid.css";
 

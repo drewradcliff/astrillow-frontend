@@ -25,7 +25,7 @@ export default function Search(props) {
         ))}
       </div>
       <div className="spacekit">
-        {/* <SpaceMap asteroidList={asteroidList} /> */}
+        <SpaceMap asteroidList={asteroidList} />
       </div>
     </div>
   );

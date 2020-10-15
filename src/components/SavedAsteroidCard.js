@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import { useHistory } from "react-router-dom";
-import image from "../images/Asteroid.jpg";
+import image from "../images/asteroid-vesta.png";
 
 const SavedAsteroidCard = (props) => {
   let history = useHistory();
