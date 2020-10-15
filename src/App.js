@@ -1,24 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { Menu, FourOhFour, AsteroidPage } from "./components";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router";
 import Home from "./Home";
+import { Menu } from "./components";
 import Saved from "./Saved";
 import Search from "./Search";
 import Signup from "./Signup";
 import Login from "./Login";
+import FourOhFour from "./components/404";
+import AsteroidPage from "./components/AsteroidPage";
 import { useHistory } from "react-router-dom";
 
-
-function App() {
+function App(props) {
   const history = useHistory();
   const [user, setUser] = useState(null);
-  useEffect(() => {
+  React.useEffect(() => {
     const data = localStorage.getItem("user");
     if (data) {
       setUser(JSON.parse(data));
     }
   }, []);
-  useEffect(() => {
+  React.useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   });
 
@@ -28,6 +29,7 @@ function App() {
     localStorage.getItem("token") ? true : false
   );
   function handleLogin(e, data) {
+    console.log(data);
     e.preventDefault();
     fetch("http://localhost:8000/auth/login/", {
       method: "POST",
@@ -44,7 +46,6 @@ function App() {
         }
         console.log(json);
         localStorage.setItem("token", json.token);
-        // localStorage.setItem("user_id", json.user.id)
         setLoggedIn(true);
         setStatus("logged in");
       })
@@ -54,6 +55,7 @@ function App() {
   }
 
   function handleSignup(e, data) {
+    console.log(data);
     e.preventDefault();
     fetch("http://localhost:8000/users/", {
       method: "POST",
@@ -64,9 +66,17 @@ function App() {
     })
       .then((res) => res.json())
       .then((json) => {
-        localStorage.setItem("token", json.token);
-        setLoggedIn(true);
-        setUser(json.user);
+        console.log(json);
+        if (json.username && json.token) {
+          console.log("HIT");
+          handleSuccessfulAuth(json);
+          localStorage.setItem("token", json.token);
+          setLoggedIn(true);
+          setStatus("logged in");
+        }
+      })
+      .catch((error) => {
+        console.log("error", error);
       });
   }
 
