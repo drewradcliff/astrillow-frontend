@@ -28,7 +28,7 @@ export default function Saved(props) {
       })
       .then((data) => setSavedAsteroids(data))
       .catch((error) => console.error(error));
-  }, []);
+  }, [history]);
 
   return (
     <div className="saved">

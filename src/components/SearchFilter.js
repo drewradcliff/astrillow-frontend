@@ -33,7 +33,7 @@ export default function SearchFilter({ setAsteroidList }) {
   };
 
   return (
-    <>
+    <div style={{ padding: "1rem" }}>
       <form
         onSubmit={(e) => handleSubmit(e, searchValue)}
         className="form-inline"
@@ -50,21 +50,23 @@ export default function SearchFilter({ setAsteroidList }) {
           Search
         </button>
       </form>
-      <ButtonGroup toggle>
-        {radios.map((radio, idx) => (
-          <ToggleButton
-            key={idx}
-            type="radio"
-            variant="secondary"
-            name="radio"
-            value={radio.value}
-            checked={radioValue === radio.value}
-            onChange={(e) => setRadioValue(e.currentTarget.value)}
-          >
-            {radio.name}
-          </ToggleButton>
-        ))}
-      </ButtonGroup>
-    </>
+      <div style={{ marginTop: "1rem" }}>
+        <ButtonGroup toggle>
+          {radios.map((radio, idx) => (
+            <ToggleButton
+              key={idx}
+              type="radio"
+              variant="secondary"
+              name="radio"
+              value={radio.value}
+              checked={radioValue === radio.value}
+              onChange={(e) => setRadioValue(e.currentTarget.value)}
+            >
+              {radio.name}
+            </ToggleButton>
+          ))}
+        </ButtonGroup>
+      </div>
+    </div>
   );
 }

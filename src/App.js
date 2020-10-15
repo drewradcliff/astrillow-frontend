@@ -22,7 +22,6 @@ function App() {
   });
 
   const [asteroidDetail, setAsteroidDetail] = useState([]);
-  const [status, setStatus] = useState("not logged in");
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem("token") ? true : false
   );
@@ -42,7 +41,6 @@ function App() {
         }
         localStorage.setItem("token", json.token);
         setLoggedIn(true);
-        setStatus("logged in");
       })
       .catch((error) => {
         console.log("error", error);
@@ -67,7 +65,6 @@ function App() {
           handleSuccessfulAuth(json);
           localStorage.setItem("token", json.token);
           setLoggedIn(true);
-          setStatus("logged in");
         }
       })
       .catch((error) => {
@@ -80,12 +77,10 @@ function App() {
     localStorage.removeItem("user");
     setUser(null);
     setLoggedIn(false);
-    setStatus("not logged in");
   }
 
   function handleSuccessfulAuth(data) {
     setUser(data);
-    setStatus("logged in");
     history.push("/");
   }
 
@@ -96,7 +91,7 @@ function App() {
         <Route
           exact
           path="/"
-          render={(props) => <Home {...props} status={status} user={user} />}
+          render={(props) => <Home {...props} user={user} />}
         ></Route>
         <Route
           path="/saved"
