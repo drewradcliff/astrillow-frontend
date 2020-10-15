@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Route, Switch } from "react-router";
+import { useHistory } from "react-router-dom";
 import { Menu, FourOhFour, AsteroidPage } from "./components";
-import { Route, Switch, Redirect } from "react-router";
 import Home from "./Home";
 import Saved from "./Saved";
 import Search from "./Search";
 import Signup from "./Signup";
 import Login from "./Login";
-import { useHistory } from "react-router-dom";
 
 function App() {
   const history = useHistory();
@@ -38,7 +38,6 @@ function App() {
       .then((res) => res.json())
       .then((json) => {
         if (json.user) {
-          console.log("HIT");
           handleSuccessfulAuth(json.user);
         }
         localStorage.setItem("token", json.token);
