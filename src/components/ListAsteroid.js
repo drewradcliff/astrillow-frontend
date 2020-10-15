@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Heart, HeartFill } from "react-bootstrap-icons";
-import image from "../images/Asteroid.jpg";
+import image from "../images/asteroid-vesta.png";
 
 import "./ListAsteroid.css";
 
@@ -67,6 +67,9 @@ export default function ListAsteroid(props) {
               This is a wider card with supporting text below as a natural
               lead-in to additional content. This content is a little bit
               longer.
+            </p>
+            <p className="card-text font-weight-bold">
+              ${(props.asteroid.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
             </p>
           </div>
         </div>

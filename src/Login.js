@@ -24,7 +24,7 @@ export default function Login(props) {
         <h4>Log In</h4>
         <label htmlFor="username">Username</label>
         <input
-          type="text"
+          type="email"
           name="username"
           value={username}
           onChange={handleChange}
