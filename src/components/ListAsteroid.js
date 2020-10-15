@@ -68,6 +68,9 @@ export default function ListAsteroid(props) {
               lead-in to additional content. This content is a little bit
               longer.
             </p>
+            <p className="card-text font-weight-bold">
+              ${(props.asteroid.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+            </p>
           </div>
         </div>
       </div>

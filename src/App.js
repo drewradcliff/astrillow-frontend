@@ -64,6 +64,15 @@ function App() {
         localStorage.setItem("token", json.token);
         setLoggedIn(true);
         setUser(json.user);
+        if (json.username && json.token) {
+          handleSuccessfulAuth(json);
+          localStorage.setItem("token", json.token);
+          setLoggedIn(true);
+          setStatus("logged in");
+        }
+      })
+      .catch((error) => {
+        console.log("error", error);
       });
   }
 
