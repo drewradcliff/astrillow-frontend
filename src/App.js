@@ -8,7 +8,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 import FourOhFour from "./components/404";
 import AsteroidPage from "./components/AsteroidPage";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 function App(props) {
   const history = useHistory();
@@ -95,9 +95,16 @@ function App(props) {
           path="/"
           render={(props) => <Home {...props} status={status} user={user} />}
         ></Route>
-        <Route path="/saved">
-          <Saved />
-        </Route>
+        <Route
+          path="/saved"
+          render={(props) =>
+            loggedIn === true ? (
+              <Saved {...props} status={status} user={user} />
+            ) : (
+              <Redirect to={{ pathname: "/login", props: { handleLogin } }} />
+            )
+          }
+        ></Route>
         <Route
           path="/search"
           render={(props) => (
