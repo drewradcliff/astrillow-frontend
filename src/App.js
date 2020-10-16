@@ -7,19 +7,20 @@ import Saved from "./Saved";
 import Search from "./Search";
 import Signup from "./Signup";
 import Login from "./Login";
+import SpaceAct from "./SpaceAct";
 
 function App() {
-  const history = useHistory();
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    const data = localStorage.getItem("user");
-    if (data) {
-      setUser(JSON.parse(data));
-    }
-  }, []);
-  useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
-  });
+	const history = useHistory();
+	const [user, setUser] = useState(null);
+	useEffect(() => {
+		const data = localStorage.getItem("user");
+		if (data) {
+			setUser(JSON.parse(data));
+		}
+	}, []);
+	useEffect(() => {
+		localStorage.setItem("user", JSON.stringify(user));
+	});
 
   const [asteroidDetail, setAsteroidDetail] = useState([]);
   const [formError, setFormError] = useState(null);
