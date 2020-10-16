@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import { Menu, FourOhFour, AsteroidPage } from "./components";
 import Home from "./Home";
 import Saved from "./Saved";
@@ -95,9 +95,13 @@ function App() {
         ></Route>
         <Route
           path="/saved"
-          render={(props) => (
-            <Saved {...props} setAsteroidDetail={setAsteroidDetail} />
-          )}
+          render={(props) =>
+            loggedIn === true ? (
+              <Saved {...props} status={status} user={user} setAsteroidDetail={setAsteroidDetail} />
+            ) : (
+              <Redirect to={{ pathname: "/login", props: { handleLogin } }} />
+            )
+          }
         ></Route>
         <Route
           path="/search"
