@@ -1,0 +1,14 @@
+#link {
+  text-decoration: none;
+  color: black;
+}
+
+.title {
+  max-width: 28rem;
+}
+
+.save-button {
+  position: absolute;
+  top: 1.5rem;
+  right: 3rem;
+}

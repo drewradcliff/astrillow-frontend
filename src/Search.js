@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { propTypes } from "react-bootstrap/esm/Image";
 import { SpaceMap, SearchFilter, ListAsteroid } from "./components";
 
 import "./Search.css";
@@ -15,10 +14,10 @@ export default function Search(props) {
           setAsteroidList={setAsteroidList}
           setSubmitValue={setSubmitValue}
         />
-        {asteroidList.map((post) => (
+        {asteroidList.map((asteroid) => (
           <ListAsteroid
-            key={post.id}
-            post={post}
+            key={asteroid.id}
+            asteroid={asteroid}
             setSubmitValue={setSubmitValue}
             submitValue={submitValue}
             setAsteroidDetail={props.setAsteroidDetail}

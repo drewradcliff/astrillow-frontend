@@ -1,30 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router";
+import { useHistory, Redirect } from "react-router-dom";
+import { Menu, FourOhFour, AsteroidPage } from "./components";
 import Home from "./Home";
-import { Menu } from "./components";
 import Saved from "./Saved";
 import Search from "./Search";
 import Signup from "./Signup";
 import Login from "./Login";
-import FourOhFour from "./components/404";
-import AsteroidPage from "./components/AsteroidPage";
-import { useHistory, Redirect } from "react-router-dom";
 
-function App(props) {
+function App() {
   const history = useHistory();
   const [user, setUser] = useState(null);
-  React.useEffect(() => {
+  useEffect(() => {
     const data = localStorage.getItem("user");
     if (data) {
       setUser(JSON.parse(data));
     }
   }, []);
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   });
 
   const [asteroidDetail, setAsteroidDetail] = useState([]);
-  const [status, setStatus] = useState("not logged in");
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem("token") ? true : false
   );
@@ -40,13 +37,10 @@ function App(props) {
       .then((res) => res.json())
       .then((json) => {
         if (json.user) {
-          console.log("HIT");
           handleSuccessfulAuth(json.user);
         }
-        console.log(json);
         localStorage.setItem("token", json.token);
         setLoggedIn(true);
-        setStatus("logged in");
       })
       .catch((error) => {
         console.log("error", error);
@@ -54,9 +48,8 @@ function App(props) {
   }
 
   function handleSignup(e, data) {
-    console.log(data);
     e.preventDefault();
-    fetch("http://localhost:8000/testusers/", {
+    fetch("http://localhost:8000/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,10 +58,17 @@ function App(props) {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         localStorage.setItem("token", json.token);
         setLoggedIn(true);
         setUser(json.user);
+        if (json.username && json.token) {
+          handleSuccessfulAuth(json);
+          localStorage.setItem("token", json.token);
+          setLoggedIn(true);
+        }
+      })
+      .catch((error) => {
+        console.log("error", error);
       });
   }
 
@@ -77,12 +77,10 @@ function App(props) {
     localStorage.removeItem("user");
     setUser(null);
     setLoggedIn(false);
-    setStatus("not logged in");
   }
 
   function handleSuccessfulAuth(data) {
     setUser(data);
-    setStatus("logged in");
     history.push("/");
   }
 
@@ -93,13 +91,13 @@ function App(props) {
         <Route
           exact
           path="/"
-          render={(props) => <Home {...props} status={status} user={user} />}
+          render={(props) => <Home {...props} user={user} />}
         ></Route>
         <Route
           path="/saved"
           render={(props) =>
             loggedIn === true ? (
-              <Saved {...props} status={status} user={user} />
+              <Saved {...props} status={status} user={user} setAsteroidDetail={setAsteroidDetail} />
             ) : (
               <Redirect to={{ pathname: "/login", props: { handleLogin } }} />
             )

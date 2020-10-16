@@ -10,7 +10,7 @@ export default function Home() {
         <h1>Go Far</h1>
         <p>You're path to untold riches.</p>
         <p>
-          <Button variant="light">Explore Asteroids</Button>
+          <Button variant="light" href="/search">Explore Asteroids</Button>
         </p>
       </div>
     </div>
