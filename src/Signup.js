@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 
-export default function Signup({ handleSignup }) {
+export default function Signup({ handleSignup, formError }) {
   const [displayName, setDisplayName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -16,8 +18,52 @@ export default function Signup({ handleSignup }) {
   }
 
   return (
-    <div style={{ paddingTop: "56px" }}>
-      <form
+    <div style={{ paddingTop: "70px", maxWidth: "30rem", margin: "0 auto" }}>
+      <Form
+        onSubmit={(e) => {
+          handleSignup(e, { username, password, display_name: displayName });
+          setDisplayName("");
+          setUsername("");
+          setPassword("");
+        }}
+      >
+        <Form.Group>
+          <Form.Label>Display Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter Display Name"
+            name="display_name"
+            value={displayName}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            name="username"
+            value={username}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        {formError && <Alert variant={"danger"}>{formError}</Alert>}
+
+        <Button variant="primary" type="submit">
+          Signup
+        </Button>
+      </Form>
+      {/* <form
         onSubmit={(e) => {
           handleSignup(e, { username, password, display_name: displayName });
           setDisplayName("");
@@ -28,7 +74,7 @@ export default function Signup({ handleSignup }) {
         <h4>Signup</h4>
         <label htmlFor="username">Username</label>
         <input
-          type="text"
+        type="email"
           name="username"
           value={username}
           onChange={handleChange}
@@ -48,7 +94,7 @@ export default function Signup({ handleSignup }) {
           onChange={handleChange}
         />
         <input type="submit" />
-      </form>
+      </form> */}
     </div>
   );
 }

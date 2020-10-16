@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import image from "../images/Asteroid.jpg";
+import image from "../images/asteroid-vesta.png";
 import "../components/AsteroidPage.css";
 
 const AsteroidPage = (props) => {
