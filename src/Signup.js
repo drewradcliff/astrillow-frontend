@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap"
+import { Form, Button } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 
-export default function Signup({ handleSignup }) {
+export default function Signup({ handleSignup, formError }) {
   const [displayName, setDisplayName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -56,8 +57,10 @@ export default function Signup({ handleSignup }) {
             onChange={handleChange}
           />
         </Form.Group>
+        {formError && <Alert variant={"danger"}>{formError}</Alert>}
+
         <Button variant="primary" type="submit">
-          Submit
+          Signup
         </Button>
       </Form>
       {/* <form
