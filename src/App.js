@@ -156,6 +156,12 @@ function App() {
           )}
         ></Route>
         <Route
+          path="/spaceact"
+          render={(props) => (
+            <SpaceAct />
+          )}
+        ></Route>
+        <Route
           path="*"
           render={(props) => <FourOhFour {...props} user={user} />}
         ></Route>
