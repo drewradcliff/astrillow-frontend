@@ -22,6 +22,7 @@ function App() {
   });
 
   const [asteroidDetail, setAsteroidDetail] = useState([]);
+  const [formError, setFormError] = useState(null);
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem("token") ? true : false
   );
@@ -36,11 +37,15 @@ function App() {
     })
       .then((res) => res.json())
       .then((json) => {
+        console.log(json);
+        if (json.non_field_errors) {
+          setFormError(json.non_field_errors);
+        }
         if (json.user) {
           handleSuccessfulAuth(json.user);
+          localStorage.setItem("token", json.token);
+          setLoggedIn(true);
         }
-        localStorage.setItem("token", json.token);
-        setLoggedIn(true);
       })
       .catch((error) => {
         console.log("error", error);
@@ -58,9 +63,9 @@ function App() {
     })
       .then((res) => res.json())
       .then((json) => {
-        localStorage.setItem("token", json.token);
-        setLoggedIn(true);
-        setUser(json.user);
+        if (json.username) {
+          setFormError(json.username);
+        }
         if (json.username && json.token) {
           handleSuccessfulAuth(json);
           localStorage.setItem("token", json.token);
@@ -97,7 +102,11 @@ function App() {
           path="/saved"
           render={(props) =>
             loggedIn === true ? (
-              <Saved {...props} user={user} setAsteroidDetail={setAsteroidDetail} />
+              <Saved
+                {...props}
+                user={user}
+                setAsteroidDetail={setAsteroidDetail}
+              />
             ) : (
               <Redirect to={{ pathname: "/login", props: { handleLogin } }} />
             )
@@ -116,13 +125,23 @@ function App() {
         <Route
           path="/signup"
           render={(props) => (
-            <Signup {...props} handleSignup={handleSignup} user={user} />
+            <Signup
+              {...props}
+              handleSignup={handleSignup}
+              user={user}
+              formError={formError}
+            />
           )}
         ></Route>
         <Route
           path="/login"
           render={(props) => (
-            <Login {...props} handleLogin={handleLogin} user={user} />
+            <Login
+              {...props}
+              handleLogin={handleLogin}
+              user={user}
+              formError={formError}
+            />
           )}
         ></Route>
         <Route
