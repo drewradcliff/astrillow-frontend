@@ -97,7 +97,7 @@ function App() {
           path="/saved"
           render={(props) =>
             loggedIn === true ? (
-              <Saved {...props} status={status} user={user} setAsteroidDetail={setAsteroidDetail} />
+              <Saved {...props} user={user} setAsteroidDetail={setAsteroidDetail} />
             ) : (
               <Redirect to={{ pathname: "/login", props: { handleLogin } }} />
             )
