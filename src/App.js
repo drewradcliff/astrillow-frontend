@@ -106,7 +106,9 @@ function App() {
 							user={user}
 						/>
 					)}></Route>
-				<Route exact path="/spaceact"></Route>
+				<Route exact path="/spaceact">
+					<SpaceAct />
+				</Route>
 				<Route
 					path="/signup"
 					render={(props) => (
