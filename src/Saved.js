@@ -32,14 +32,14 @@ export default function Saved(props) {
 
   return (
     <div className="saved">
-      <h1 className="title">Saved Asteroids</h1>
-      <div className="cards">
+      <h1 className="asteroid-title">Saved Asteroids</h1>
+      <div className="asteroid-cards">
         {savedAsteroids &&
           savedAsteroids.map((asteroid) => (
             <SavedAsteroidCard
               key={asteroid.id}
               asteroid={asteroid}
-              className="card"
+              className="asteroid-card"
               setAsteroidDetail={props.setAsteroidDetail}
             />
           ))}
