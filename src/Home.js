@@ -10,7 +10,13 @@ export default function Home() {
         <h1>Go Far</h1>
         <p>You're path to untold riches.</p>
         <p>
-          <Button variant="light" href="/search">Explore Asteroids</Button>
+          <Button className="button" variant="light" href="/search">
+            Explore Asteroids
+          </Button>
+          <br />
+          <Button className="button" variant="light" href="/test500">
+            Test Server 500 Error
+          </Button>
         </p>
       </div>
     </div>

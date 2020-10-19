@@ -5,22 +5,23 @@ import { Menu, FourOhFour, AsteroidPage } from "./components";
 import Home from "./Home";
 import Saved from "./Saved";
 import Search from "./Search";
+import ServerError from "./components/ServerError";
 import Signup from "./Signup";
 import Login from "./Login";
 import SpaceAct from "./SpaceAct";
 
 function App() {
-	const history = useHistory();
-	const [user, setUser] = useState(null);
-	useEffect(() => {
-		const data = localStorage.getItem("user");
-		if (data) {
-			setUser(JSON.parse(data));
-		}
-	}, []);
-	useEffect(() => {
-		localStorage.setItem("user", JSON.stringify(user));
-	});
+  const history = useHistory();
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const data = localStorage.getItem("user");
+    if (data) {
+      setUser(JSON.parse(data));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  });
 
   const [asteroidDetail, setAsteroidDetail] = useState([]);
   const [formError, setFormError] = useState(null);
@@ -135,6 +136,17 @@ function App() {
           )}
         ></Route>
         <Route
+          path="/test500"
+          render={(props) => (
+            <ServerError
+              {...props}
+              handleSignup={handleSignup}
+              user={user}
+              formError={formError}
+            />
+          )}
+        ></Route>
+        <Route
           path="/login"
           render={(props) => (
             <Login
@@ -155,12 +167,7 @@ function App() {
             />
           )}
         ></Route>
-        <Route
-          path="/spaceact"
-          render={(props) => (
-            <SpaceAct />
-          )}
-        ></Route>
+        <Route path="/spaceact" render={(props) => <SpaceAct />}></Route>
         <Route
           path="*"
           render={(props) => <FourOhFour {...props} user={user} />}
