@@ -64,9 +64,7 @@ export default function ListAsteroid(props) {
               )}
             </div>
             <p className="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
+            diameter: {props.asteroid.diameter}
             </p>
             <p className="card-text font-weight-bold">
               ${(props.asteroid.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}

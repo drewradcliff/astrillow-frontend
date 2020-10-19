@@ -30,10 +30,28 @@ export default function Saved(props) {
       .catch((error) => console.error(error));
   }, [history]);
 
+  const handleDelete = (e, id) => {
+    e.preventDefault();
+    fetch(`http://localhost:8000/api/savedasteroid/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `JWT ${localStorage.getItem("token")}`,
+      },
+    })
+      .then(() => {
+        let newSavedAsteroids = savedAsteroids.filter(
+          (asteroid) => asteroid.id !== id
+        );
+        setSavedAsteroids(newSavedAsteroids);
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div className="saved">
-      <h1 className="asteroid-title">Saved Asteroids</h1>
-      <div className="asteroid-cards">
+      <h1 className="title">Saved Asteroids</h1>
+      <div className="savedCards">
         {savedAsteroids &&
           savedAsteroids.map((asteroid) => (
             <SavedAsteroidCard
@@ -41,6 +59,7 @@ export default function Saved(props) {
               asteroid={asteroid}
               className="asteroid-card"
               setAsteroidDetail={props.setAsteroidDetail}
+              handleDelete={handleDelete}
             />
           ))}
       </div>

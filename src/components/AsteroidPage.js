@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import image from "../images/asteroid-vesta.png";
-import "../components/AsteroidPage.css";
+import "./AsteroidPage.css";
+import { SpaceMap } from ".";
 
 const AsteroidPage = (props) => {
+  const [compositions, setCompositions] = useState({});
+  useEffect(() => {
+    fetch(`http://www.asterank.com/api/compositions`)
+      .then((res) => res.json())
+      .then((data) => setCompositions(data[props.asteroidDetail.spec]));
+  }, [props.asteroidDetail.spec]);
+
   return (
     <Card className="asteroid-page" style={{ width: "28rem" }} border="light">
-      <div className="card-header">Detail Page</div>
       <Card.Body className="body">
         <div className="container">
           <Card.Title style={{ flexGrow: 1 }}>
@@ -33,8 +39,17 @@ const AsteroidPage = (props) => {
           </div>
         </div>
       </Card.Body>
-      <Card.Img variant="top" src={image} style={{ height: 250 + "px" }} />
+      {/* <Card.Img variant="top" src={image} style={{ height: 250 + "px", width: "250px", margin: "0 auto" }} /> */}
+      <div style={{ width: "28rem", height: "28rem" }}>
+        <SpaceMap asteroidList={[props.asteroidDetail]} />
+      </div>
       <p className="text">Producer: {props.asteroidDetail.producer}</p>
+      <h5>Composition</h5>
+      <ul>
+        {Object.keys(compositions).map(function(key, index) {
+          return <li>{key}</li>
+        })}
+      </ul>
       <div className="card-footer text-muted">
         First Observed: {props.asteroidDetail.first_obs}
       </div>

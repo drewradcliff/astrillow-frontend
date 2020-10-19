@@ -1,21 +1,21 @@
 .saved {
-  padding-top: 56px;
+	padding-top: 56px;
 }
 
-.asteroid-cards {
-  margin: 0 auto;
-  max-width: 1250px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+.savedCards {
+	margin: 0 auto;
+	max-width: 1000px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
 }
 
-.asteroid-card {
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+.card {
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
-.asteroid-title {
-  margin: 0 auto;
-  margin-bottom: 2rem;
-  max-width: 1023px;
+.title {
+	margin: 0 auto;
+	margin-bottom: 2rem;
+	max-width: 1000px;
 }
