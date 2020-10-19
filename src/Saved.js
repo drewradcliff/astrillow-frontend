@@ -57,7 +57,7 @@ export default function Saved(props) {
             <SavedAsteroidCard
               key={asteroid.id}
               asteroid={asteroid}
-              className="card"
+              className="asteroid-card"
               setAsteroidDetail={props.setAsteroidDetail}
               handleDelete={handleDelete}
             />

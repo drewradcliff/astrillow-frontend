@@ -1,24 +1,24 @@
 .spaceact {
-	padding-top: 56px;
+  padding-top: 56px;
 }
 .cards {
-	margin: 0 auto;
-	max-width: 1000px;
-	display: inline;
-	grid-template-columns: auto;
-	gap: 20px;
-	place-items: center;
+  margin: 0 auto;
+  max-width: 1000px;
+  display: inline;
+  grid-template-columns: auto;
+  gap: 20px;
+  place-items: center;
 }
 
 .card {
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-	max-width: 1000px;
-	margin: auto;
-	place-self: center;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: auto;
+  place-self: center;
 }
 
 .title {
-	margin: 0 auto;
-	margin-bottom: 2rem;
-	max-width: 1000px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  max-width: 1000px;
 }
