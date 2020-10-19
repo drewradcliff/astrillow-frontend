@@ -9,7 +9,7 @@ const AsteroidPage = (props) => {
     fetch(`http://www.asterank.com/api/compositions`)
       .then((res) => res.json())
       .then((data) => setCompositions(data[props.asteroidDetail.spec]));
-  }, []);
+  }, [props.asteroidDetail.spec]);
 
   return (
     <Card className="asteroid-page" style={{ width: "28rem" }} border="light">
