@@ -1,11 +1,11 @@
 import * as React from "react";
 import * as Parser from "rss-parser";
 
-let NParser = require("rss-parser");
-let parser = new NParser();
+let Parser = require("rss-parser");
+let parser = new Parser();
 const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
 
-class NasaRss extends React.Component {
+class app extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -14,7 +14,7 @@ class NasaRss extends React.Component {
 	}
 
 	async componentDidMount() {
-		const feed = await parser.parseURL(
+		const feed = await Parser.parseURL(
 			CORS_PROXY + "https://www.nasa.gov/rss/dyn/breaking_news.rss"
 		);
 		this.setState(feed);
@@ -28,8 +28,8 @@ export default function NasaRss() {
 			{this.state.items &&
 				this.state.item.map((item, i) => (
 					<div key={i}>
-						<h1>item.title</h1>
-						<a href="">item.link</a>
+						<h1>{item.title}</h1>
+						<a href="">{item.link}</a>
 					</div>
 				))}
 		</div>
